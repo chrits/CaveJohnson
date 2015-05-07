@@ -285,7 +285,7 @@ def get_repo():
     origin = get_origin(get_git_directory())
     if not origin:
         raise Exception("Unable to find repo.  Please file a bug at http://github.com/drewcrawford/cavejohnson and include the contents of %s" % sourceLogPath)
-    githubRegex = re.compile('github.com(:)?', re.IGNORECASE)
+    githubRegex = re.compile('github.kdc.capitalone.com(:)?', re.IGNORECASE)
     match = githubRegex.search(origin)
     assert match
     repo = origin[match.end():]
@@ -302,7 +302,7 @@ def get_repo_from_log():
         if not match:
             raise Exception("No repo match in file.  Please file a bug at http://github.com/drewcrawford/cavejohnson and include the contents of %s" % sourceLogPath)
         XcodeFunkyRepo = match.groups()[0]  # some funky string like "github.com:drewcrawford\/DCAKit.git"
-        githubRegex = re.compile('github.com(:)?', re.IGNORECASE)
+        githubRegex = re.compile('github.kdc.capitalone.com(:)?', re.IGNORECASE)
         match = githubRegex.search(XcodeFunkyRepo)
         assert match
         XcodeFunkyRepo = XcodeFunkyRepo[match.end():]

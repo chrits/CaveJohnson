@@ -13,7 +13,7 @@ setup(
     },
     author="Drew Crawford",
     author_email="drew@sealedabstract.com",
-    url="http://github.com/drewcrawford/cavejohnson",
+    url="http://github.com/chrits/cavejohnson",
     description="Teach Xcode 6 CI new tricks",
     long_description="""CaveJohnson is a program to teach XCode6 Server new tricks. It's a set of commands that perform various commonly-used tasks in a continuous build system. While designed primarily for use inside an XCS trigger script, many of the commands are useful to other build systems (Jenkins, TeamCity, etc.) because the author is unusually good at reverse-engineering and duplicating weird Xcode behavior.
 
