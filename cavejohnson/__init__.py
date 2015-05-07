@@ -237,7 +237,7 @@ def github_auth():
     while not password:
         password = getpass('Password for {0}: '.format(user))
     note = 'cavejohnson, teaching Xcode 6 CI new tricks'
-    note_url = 'http://sealedabstract.com'
+    note_url = 'http://github.kdc.capitalone.com/api/v3'
     scopes = ['repo:status', 'repo']
     auth = authorize(user, password, scopes, note, note_url)
 
