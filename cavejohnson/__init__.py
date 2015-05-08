@@ -260,7 +260,7 @@ def get_sha():
 
 def get_git_directory():
     for subdir in os.listdir('.'):
-        print("SubDir `{}`").format(subdir)
+        print("SubDir `{}`".format(subdir))
         if is_git_directory(subdir):
             return subdir
     assert False
