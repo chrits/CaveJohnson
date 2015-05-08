@@ -178,7 +178,7 @@ def upload_itunesconnect(itunes_app_id, itunes_username, itunes_password, ipa_pa
 
 
 def set_github_status(repo, sha, token=None, integration_result=None, url='https://github.kdc.capitalone.com/api/v3', botname=None, verbosity=0):
-    from github import GitHubEnterprise
+    from github3 import GitHubEnterprise
     #import github3
     if not token:
         token = github_auth()
@@ -231,7 +231,7 @@ def github_auth():
             token = f.read().strip()
             return token
 
-    from github import GitHubEnterprise        
+    from github3 import GitHubEnterprise        
     from github3 import authorize
     from getpass import getpass
     user = ''
