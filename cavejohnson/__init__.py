@@ -177,13 +177,13 @@ def upload_itunesconnect(itunes_app_id, itunes_username, itunes_password, ipa_pa
     shutil.rmtree(tpath)
 
 
-def set_github_status(repo, sha, token=None, integration_result=None, url='https://github.kdc.capitalone.com/api/v3', botname=None, verbosity=0):
+def set_github_status(repo, sha, token=None, integration_result=None, url=None, botname=None, verbosity=0):
     from github3 import GitHubEnterprise
     #import github3
     if not token:
         token = github_auth()
 
-    gh = GitHubEnterprise('https://github.kdc.capitalone.com/api/v3')
+    gh = GitHubEnterprise('https://github.kdc.capitalone.com')
     gh = gh.login(token=token)
     repo = repo.strip("/")
     (owner, reponame) = repo.split("/")
@@ -231,7 +231,7 @@ def github_auth():
             token = f.read().strip()
             return token
 
-    from github3 import GitHubEnterprise        
+    from github3 import GitHubEnterprise      
     from github3 import authorize
     from getpass import getpass
     user = ''
@@ -244,7 +244,8 @@ def github_auth():
     note_url = 'http://github.kdc.capitalone.com/api/v3'
     scopes = ['repo:status', 'repo']
 
-    g = GitHubEnterprise("https://github.kdc.capitalone.com/api/v3/")
+    g = GitHubEnterprise("https://github.kdc.capitalone.com")
+    print("GitHubEnterprise object `{}`".format(g))
     auth = g.authorize(user, password, scopes, note, note_url)
 
     with open(CREDENTIALS_FILE, "w") as f:
@@ -259,6 +260,7 @@ def get_sha():
 
 def get_git_directory():
     for subdir in os.listdir('.'):
+        print("SubDir `{}`").format(subdir)
         if is_git_directory(subdir):
             return subdir
     assert False
