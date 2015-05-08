@@ -177,11 +177,14 @@ def upload_itunesconnect(itunes_app_id, itunes_username, itunes_password, ipa_pa
     shutil.rmtree(tpath)
 
 
-def set_github_status(repo, sha, token=None, integration_result=None, url=None, botname=None, verbosity=0):
-    import github3
+def set_github_status(repo, sha, token=None, integration_result=None, url='https://github.kdc.capitalone.com/api/v3', botname=None, verbosity=0):
+    from github import GitHubEnterprise
+    #import github3
     if not token:
         token = github_auth()
-    gh = github3.login(token=token)
+
+    gh = GitHubEnterprise('https://github.kdc.capitalone.com/api/v3')
+    gh = gh.login(token=token)
     repo = repo.strip("/")
     (owner, reponame) = repo.split("/")
     r = gh.repository(owner, reponame)
@@ -228,6 +231,7 @@ def github_auth():
             token = f.read().strip()
             return token
 
+    from github import GitHubEnterprise        
     from github3 import authorize
     from getpass import getpass
     user = ''
@@ -239,7 +243,9 @@ def github_auth():
     note = 'cavejohnson, teaching Xcode 6 CI new tricks'
     note_url = 'http://github.kdc.capitalone.com/api/v3'
     scopes = ['repo:status', 'repo']
-    auth = authorize(user, password, scopes, note, note_url)
+
+    g = GitHubEnterprise("https://github.kdc.capitalone.com/api/v3/")
+    auth = g.authorize(user, password, scopes, note, note_url)
 
     with open(CREDENTIALS_FILE, "w") as f:
         f.write(auth.token)
